@@ -1,0 +1,3 @@
+[submodule "vendors/kubernetes-goat"]
+	path = vendors/kubernetes-goat
+	url = https://github.com/madhuakula/kubernetes-goat.git

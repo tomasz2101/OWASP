@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hackme-app
+  labels:
+    app: hackme-app
+spec:
+  containers:
+    - name: app
+      image: tomasz2101/hackme-app:v2
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 80
+          protocol: TCP

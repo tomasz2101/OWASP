@@ -1,0 +1,25 @@
+body {
+    background-color: #0385bd;
+}
+
+.header {
+    margin-top: 12%;
+}
+
+button {
+    pointer-events: none;
+}
+
+.jumbotron {
+    background-image: url('../../assets/img/background.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 1%;
+}
+
+.jumbotron h1 {
+    bottom: 0;
+    color: #00a2e3;
+    font-size: 60pt;
+    font-weight: bold;
+}
