@@ -33,7 +33,7 @@ kubectl config set-context docker-desktop
     ```shell
     {
         # Clone repository
-        git clone https://github.com/ldynia/html5-hackme-app.git hackme-app --recurse-submodules;
+        git clone https://github.com/tomasz2101/OWASP.git hackme-app --recurse-submodules;
         cd hackme-app/vendors/kubernetes-goat;
         
         # Delete OWPASP GOAT resources
@@ -56,8 +56,8 @@ kubectl config set-context docker-desktop
 ### Docker
 
 ```shell
-docker build -t ldynia/hackme-app -f devops/docker/v1.Dockerfile .
-docker run -it -d --rm --name hackme-app -p 8080:80 ldynia/hackme-app
+docker build -t tomasz2101/hackme-app -f devops/docker/v1.Dockerfile .
+docker run -it -d --rm --name hackme-app -p 8080:80 tomasz2101/hackme-app
 ```
 
 Visit app on [localhost:8080](http://localhost:8080)

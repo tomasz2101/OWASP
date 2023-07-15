@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: todo-app
+  labels:
+    app: todo-app
+spec:
+  containers:
+    - name: app
+      image: prologic/todo:latest
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8000
+          protocol: TCP
