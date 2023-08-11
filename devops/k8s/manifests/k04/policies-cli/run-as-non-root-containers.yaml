@@ -1,0 +1,78 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: run-as-non-root-containers
+  annotations:
+    policies.kyverno.io/title: Run as Non Root Containers
+    policies.kyverno.io/description: >-
+      Container must not be running with root user.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: run-as-non-root
+      match:
+        any:
+        - resources:
+            kinds:
+              - Deployment
+      validate:
+        message: >-
+          Running as non root is required. The fields spec.template.spec.containers[*].securityContext.runAsNonRoot
+          must be set to `true` also runAsUser and runAsGroup must be greater than 0
+        anyPattern: # anyPattern is the logical OR the following 2 spec(s) https://kyverno.io/docs/writing-policies/validate/#anypattern 
+        - spec:  # either pod security context is set with run as user, or containers level securityContext are set with run as user
+            template:
+              spec:
+                securityContext:
+                  runAsNonRoot: true
+                  runAsUser: ">0"
+                  runAsGroup: ">0"
+        - spec:
+            template:
+              spec:
+                =(initContainers):
+                 - securityContext:
+                     runAsNonRoot: true
+                     runAsUser: ">0"
+                     runAsGroup: ">0"
+                containers:
+                 - securityContext:
+                     runAsNonRoot: true
+                     runAsUser: ">0"
+                     runAsGroup: ">0"
+    - name: cronjob-run-as-non-root
+      match:
+        any:
+        - resources:
+            kinds:
+              - CronJob
+      validate:
+        message: >-
+          Running as non root is required. The fields jobTemplate.spec.template.spec.containers[*].securityContext.runAsNonRoot
+          must be set to `true` and runAsUser must be greater than 0
+        anyPattern:
+        - spec:
+            jobTemplate:
+              spec:
+                template:
+                  spec:
+                    securityContext:
+                      runAsNonRoot: true
+                      runAsUser: ">0"
+                      runAsGroup: ">0"
+        - spec:
+            jobTemplate:
+              spec:
+                template:
+                  spec:
+                    =(initContainers):
+                    - securityContext:
+                        runAsNonRoot: true
+                        runAsUser: ">0"
+                        runAsGroup: ">0"
+                    containers:
+                    - securityContext:
+                        runAsNonRoot: true
+                        runAsUser: ">0"
+                        runAsGroup: ">0"

@@ -1,0 +1,49 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-read-only-root-filesystem
+  annotations:
+    policies.kyverno.io/title: Require read only root filesystem
+    policies.kyverno.io/description: >-
+      Containers must only allow read only for root filesystem to prevent malicious program being added to disk. Must set the readOnlyRootFilesystem to true.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: read-only-root-filesystem
+      match:
+        any:
+        - resources:
+            kinds:
+              - Deployment
+      validate:
+        message: >-
+          The fields spec.template.spec.containers[*].securityContext.readOnlyRootFilesystem must be set to `true`.
+        pattern:
+          spec:
+            template:
+              spec:
+                =(initContainers):
+                 - securityContext:
+                    readOnlyRootFilesystem: true
+                containers:
+                 - securityContext:
+                    readOnlyRootFilesystem: true
+    - name: cronjob-read-only-root-filesystem
+      match:
+        any:
+        - resources:
+            kinds:
+              - CronJob
+      validate:
+        message: >-
+          The fields jobTemplate.spec.template.spec.containers[*].securityContext.readOnlyRootFilesystem must be set to `true`.
+        pattern:
+          spec:
+            jobTemplate:
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - securityContext:
+                          readOnlyRootFilesystem: true

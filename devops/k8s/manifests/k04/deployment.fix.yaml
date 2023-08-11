@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+    team: Example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        team: Example
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+      containers:
+      - name: nginx
+        image: docker.io/tomasz2101/hackme-app:v1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /var/run
+          name: tmpfs-1
+        - mountPath: /var/cache/nginx
+          name: tmpfs-2
+      volumes:
+        - name: tmpfs-1
+          emptyDir: {}
+        - name: tmpfs-2
+          emptyDir: {}

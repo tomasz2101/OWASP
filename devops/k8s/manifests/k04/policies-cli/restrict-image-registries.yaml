@@ -1,0 +1,50 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-image-registries
+  annotations:
+    policies.kyverno.io/title: Restrict Image Registries
+    policies.kyverno.io/description: >-
+      Images from unknown, public registries can be of dubious quality and may not be
+      scanned and secured, representing a high degree of risk. Requiring use of known, approved
+      registries helps reduce threat exposure by ensuring image pulls only come from them. This
+      policy validates that container images only originate from the registry `eu.foo.io` or
+      `bar.io`. Use of this policy requires customization to define your allowable registries.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+  - name: validate-registries
+    match:
+      any:
+      - resources:
+          kinds:
+          - Deployment
+    validate:
+      message: "Unknown image registry. Only azurecr.io, docker.io or jfrog.io are allowed for image registry"
+      pattern:
+        spec:
+          template:
+            spec:
+               =(ephemeralContainers):
+               - image: "*azurecr.io/* | *docker.io/* | *jfrog.io/*" 
+               =(initContainers):
+               - image: "*azurecr.io/* | *docker.io/* | *jfrog.io/*"
+               containers:
+               - image: "*azurecr.io/* | *docker.io/* | *jfrog.io/*"
+  - name: cronjob-validate-registries
+    match:
+      any:
+      - resources:
+          kinds:
+          - CronJob
+    validate:
+      message: "Unknown image registry. Only azurecr.io, docker.io or jfrog.io are allowed for image registry"
+      pattern:
+        spec:
+          jobTemplate:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - image: "*azurecr.io/* | *docker.io/* | *jfrog.io/*"

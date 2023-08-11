@@ -11,7 +11,7 @@
 
 4. Execute:
 ```shell
-    kubectl exec hackme-app -- bash -c "echo '<\!DOCTYPE html><html lang=\"en\"><head><style> body { align-items: center; background-color: black; display: flex; height: 100vh; justify-content: center; } </style></head><body><img src=\"https://raw.githubusercontent.com/tomasz2101/OWASP/main/app/src/assets/img/h1sub.png\"></body></html>' > /usr/share/nginx/html/index.html"
+    kubectl exec hackme-app -- bash -c "echo '<\!DOCTYPE html><html lang=\"en\"><head><style> body { align-items: center; background-color: black; display: flex; height: 100vh; justify-content: center; } </style></head><body><img src=\"https://raw.githubusercontent.com/tomasz2101/html5-hackme-app/main/app/src/assets/img/h1sub.png\"></body></html>' > /usr/share/nginx/html/index.html"
 ```
 
 5. Visit localhost:8080

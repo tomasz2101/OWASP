@@ -1,14 +1,15 @@
----
 apiVersion: v1
 kind: Pod
 metadata:
   name: hackme-app
+  namespace: k07-secret01
   labels:
     app: hackme-app
+
 spec:
   containers:
     - name: app
-      image: tomasz2101/hackme-app:v1
+      image: towit665/hackme-app:v1
       imagePullPolicy: Always
       ports:
         - containerPort: 80
