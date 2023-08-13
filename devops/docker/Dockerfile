@@ -1,4 +1,4 @@
-FROM nginx:1.25.0
+FROM nginx:1.25.1
 
 ARG INDEX_VERSION=v1 \
     USERNAME
