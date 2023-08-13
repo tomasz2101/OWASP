@@ -23,4 +23,6 @@ jobs:
           context: .
           file: devops/docker/Dockerfile
           push: true
-          tags: tomasz2101/hackme-app:latest
+          tags: |
+            tomasz2101/hackme-app:latest
+            tomasz2101/hackme-app:${{ github.sha }}
