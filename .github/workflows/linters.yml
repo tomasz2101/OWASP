@@ -13,5 +13,5 @@ jobs:
       - name: 'Yamllint'
         uses: karancode/yamllint-github-action@master
         with:
-          yamllint_file_or_dir: 'devops/k8s/manifests'
+          yamllint_file_or_dir: .
           yamllint_strict: false

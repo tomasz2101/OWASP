@@ -13,8 +13,8 @@ spec:
       ports:
         - containerPort: 80
           protocol: TCP
-      # Make file system read only! 
-      securityContext: 
+      # Make file system read only!
+      securityContext:
         readOnlyRootFilesystem: true
       # Fix nginx filesystem error
       volumeMounts:

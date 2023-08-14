@@ -6,10 +6,10 @@ metadata:
   namespace: k08
 rules:
 - apiGroups:
-  - ""
+    - ""
   resources:
-  - '*'
+    - '*'
   verbs:
-  - get
-  - watch
-  - list
+    - get
+    - watch
+    - list

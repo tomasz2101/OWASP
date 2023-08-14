@@ -8,7 +8,7 @@ spec:
   podSelector:
     matchLabels: {}
   ingress:
-  - from:
-    - namespaceSelector:
-        matchLabels:
-          name: k07-secret01
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: k07-secret01

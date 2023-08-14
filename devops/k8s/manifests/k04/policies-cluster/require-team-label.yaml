@@ -6,13 +6,13 @@ metadata:
 spec:
   validationFailureAction: Enforce
   rules:
-  - name: check-team
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-          - Deployment
+    - name: check-team
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
     validate:
       message: "label 'team' is required"
       pattern:

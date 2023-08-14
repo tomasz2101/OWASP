@@ -14,5 +14,5 @@ spec:
         - containerPort: 80
           protocol: TCP
       # Disable privilege access
-      securityContext:  
+      securityContext:
         privileged: false

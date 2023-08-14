@@ -5,8 +5,8 @@ metadata:
   name: secret-reader-binding
   namespace: k08
 subjects:
-- kind: ServiceAccount
-  name: testing-sa
+  - kind: ServiceAccount
+    name: testing-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

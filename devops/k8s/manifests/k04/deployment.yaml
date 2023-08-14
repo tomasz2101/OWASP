@@ -16,8 +16,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: docker.io/tomasz2101/hackme-app:v1
-        imagePullPolicy: Always
-        ports:
-          - containerPort: 80
+        - name: nginx
+          image: docker.io/tomasz2101/hackme-app:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

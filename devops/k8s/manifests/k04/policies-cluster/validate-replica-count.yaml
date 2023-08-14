@@ -9,11 +9,12 @@ spec:
     - name: validate-replica-count
       match:
         any:
-        - resources:
-            kinds:
-            - Deployment
+          - resources:
+              kinds:
+                - Deployment
       validate:
-        message: "Replica count for a Deployment must be greater than or equal to 2."
+        message: >- 
+          Replica count for a Deployment must be greater than or equal to 2.
         pattern:
           spec:
             replicas: ">=2"
