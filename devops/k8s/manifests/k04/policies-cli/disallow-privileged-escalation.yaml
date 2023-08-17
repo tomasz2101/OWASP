@@ -7,7 +7,7 @@ metadata:
     policies.kyverno.io/title: Disallow Privileged Escalation
     policies.kyverno.io/description: >-
       Privilege escalation, such as via set-user-ID or set-group-ID file mode, should not be allowed.
-      This policy ensures the `allowPrivilegeEscalation` field is set to `false`.      
+      This policy ensures the `allowPrivilegeEscalation` field is set to `false`.
 spec:
   validationFailureAction: Audit
   background: true
@@ -15,9 +15,9 @@ spec:
     - name: privileged-escalation
       match:
         any:
-        - resources:
-            kinds:
-              - Deployment
+          - resources:
+              kinds:
+                - Deployment
       validate:
         message: >-
           Privileged escalation is disallowed. The fields spec.template.spec.containers[*].securityContext.allowPrivilegeEscalation
@@ -27,17 +27,17 @@ spec:
             template:
               spec:  # =() check if the initContainers exist, if does, proceed to check if allowPrivilegeEscalation is false https://kyverno.io/docs/writing-policies/validate/#anchors
                 =(initContainers):
-                 - securityContext:
-                    allowPrivilegeEscalation: false
+                  - securityContext:
+                      allowPrivilegeEscalation: false
                 containers:
-                 - securityContext:
-                    allowPrivilegeEscalation: false
+                  - securityContext:
+                      allowPrivilegeEscalation: false
     - name: cronjob-privileged-escalation
       match:
         any:
-        - resources:
-            kinds:
-              - CronJob
+          - resources:
+              kinds:
+                - CronJob
       validate:
         message: >-
           Privileged escalation is disallowed. The fields jobTemplate.spec.template.spec.containers[*].securityContext.allowPrivilegeEscalation must be set to `false`.

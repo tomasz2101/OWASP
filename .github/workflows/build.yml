@@ -3,12 +3,12 @@ name: 'Docker build'
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - devops/docker/**
       - app/**
-      # - .github/workflows/build.yml
+      - .github/workflows/build.yml
 jobs:
   build:
     runs-on: ubuntu-latest

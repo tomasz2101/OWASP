@@ -5,11 +5,11 @@ metadata:
   name: secret-reader
   namespace: k08
 rules:
-- apiGroups:
-    - ""
-  resources:
-    - '*'
-  verbs:
-    - get
-    - watch
-    - list
+  - apiGroups:
+      - ""
+    resources:
+      - '*'
+    verbs:
+      - get
+      - watch
+      - list

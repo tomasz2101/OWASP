@@ -13,9 +13,9 @@ spec:
               kinds:
                 - Pod
                 - Deployment
-    validate:
-      message: "label 'team' is required"
-      pattern:
-        metadata:
-          labels:
-            team: "?*"
+      validate:
+        message: "label 'team' is required"
+        pattern:
+          metadata:
+            labels:
+              team: "?*"

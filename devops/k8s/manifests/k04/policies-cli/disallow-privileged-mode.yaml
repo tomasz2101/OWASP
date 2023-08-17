@@ -15,9 +15,9 @@ spec:
     - name: privileged-mode
       match:
         any:
-        - resources:
-            kinds:
-              - Deployment
+          - resources:
+              kinds:
+                - Deployment
       validate:
         message: >-
           Privileged mode is disallowed. The fields spec.template.spec.containers[*].securityContext.privileged
@@ -28,7 +28,7 @@ spec:
               spec:
                 =(ephemeralContainers):
                   - =(securityContext):
-                      =(privileged): false # if privileged is set in the securityContext, check if it is set to false.
+                      =(privileged): false  # if privileged is set in the securityContext, check if it is set to false.
                 =(initContainers):
                   - =(securityContext):
                       =(privileged): false
@@ -38,13 +38,13 @@ spec:
     - name: cronjob-privileged-mode
       match:
         any:
-        - resources:
-            kinds:
-              - CronJob
+          - resources:
+              kinds:
+                - CronJob
       validate:
         message: >-
           The fields jobTemplate.spec.template.spec.containers[*].securityContext.privileged must be unset or set to `false`.
-        pattern: 
+        pattern:
           spec:
             jobTemplate:
               spec:

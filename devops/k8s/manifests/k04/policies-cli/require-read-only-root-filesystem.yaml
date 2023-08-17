@@ -14,9 +14,9 @@ spec:
     - name: read-only-root-filesystem
       match:
         any:
-        - resources:
-            kinds:
-              - Deployment
+          - resources:
+              kinds:
+                - Deployment
       validate:
         message: >-
           The fields spec.template.spec.containers[*].securityContext.readOnlyRootFilesystem must be set to `true`.
@@ -25,17 +25,17 @@ spec:
             template:
               spec:
                 =(initContainers):
-                 - securityContext:
-                    readOnlyRootFilesystem: true
+                  - securityContext:
+                      readOnlyRootFilesystem: true
                 containers:
-                 - securityContext:
-                    readOnlyRootFilesystem: true
+                  - securityContext:
+                      readOnlyRootFilesystem: true
     - name: cronjob-read-only-root-filesystem
       match:
         any:
-        - resources:
-            kinds:
-              - CronJob
+          - resources:
+              kinds:
+                - CronJob
       validate:
         message: >-
           The fields jobTemplate.spec.template.spec.containers[*].securityContext.readOnlyRootFilesystem must be set to `true`.
