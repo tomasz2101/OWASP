@@ -10,4 +10,3 @@
     kubectl port-forward pod/hackme-app 8080:80
 
 3. Visit localhost:8080
-

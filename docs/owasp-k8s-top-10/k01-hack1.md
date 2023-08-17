@@ -6,7 +6,7 @@ This exploit demonstrates what could potentialy happened to an application, if a
 
 # Setup
 
-## Docker 
+## Docker
 
 ```shell
 cat devops/docker/Dockerfile; echo
@@ -89,7 +89,7 @@ kind: Pod
 spec:
   containers:
     - ...
-      securityContext: 
+      securityContext:
         readOnlyRootFilesystem: true
 ```
 

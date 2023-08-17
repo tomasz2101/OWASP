@@ -65,11 +65,11 @@ cat /etc/group | grep nogroup | cut -d':' -f3
 ```
 
 ```yaml
-apiVersion: v1  
-kind: Pod  
+apiVersion: v1
+kind: Pod
 ...
-spec:  
-  securityContext: 
+spec:
+  securityContext:
     runAsGroup: 65534
     runAsNonRoot: true
     runAsUser: 65534

@@ -35,11 +35,11 @@ kubectl config set-context docker-desktop
         # Clone repository
         git clone https://github.com/tomasz2101/OWASP.git hackme-app --recurse-submodules;
         cd hackme-app/vendors/kubernetes-goat;
-        
+
         # Delete OWPASP GOAT resources
         kubectl delete ns secure-middleware big-monolith;
         kubectl delete ing,svc,deployment,job,pod --all --force --grace-period 0;
-        
+
         # Install OWASP GOAT
         bash setup-kubernetes-goat.sh;
         bash access-kubernetes-goat.sh;

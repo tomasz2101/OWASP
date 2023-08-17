@@ -42,14 +42,14 @@ kubectl apply -f devops/k8s/manifests/k08/hack.pod.yaml
 
 1. Encrypt secrets at rest
 
-    Always encrypt your data at rest and in transit. e.g backups - consider using full disk encryption where possible. Since v1.13 Kubernetes supports encryption at rest. Kubernetes resources are encrypted in etcd. 
+    Always encrypt your data at rest and in transit. e.g backups - consider using full disk encryption where possible. Since v1.13 Kubernetes supports encryption at rest. Kubernetes resources are encrypted in etcd.
 
 1. Address Security Misconfigurations
 
     Configuration across clusters is predicament to security. Vulnerabilities, image security, and policy enforcement need to be in place.
-    
-    Locked down RBAC configuration. Keep all Service Account and end user access to least privilege. 
-    
+
+    Locked down RBAC configuration. Keep all Service Account and end user access to least privilege.
+
     Always audit the RBAC configuration of third-party plugins and software installed in the cluster to ensure access to Kubernetes secrets is not granted unnecessarily.
 
 # Links

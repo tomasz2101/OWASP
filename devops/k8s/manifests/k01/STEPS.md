@@ -54,7 +54,7 @@
 2. Execute:
 ```shell
     kubectl apply -f devops/k8s/manifests/k01/hack.pod.yaml
-    
+
 ```
 ```shell
 # Terminal no. 1

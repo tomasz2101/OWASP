@@ -37,13 +37,13 @@ Running the process inside of a container as the root user is a common misconfig
 ## Kubernetes
 
 ```yaml
-apiVersion: v1  
-kind: Pod  
+apiVersion: v1
+kind: Pod
 ...
-spec:  
-  containers:  
+spec:
+  containers:
   ...
-  securityContext:  
+  securityContext:
     privileged: false
 ```
 
